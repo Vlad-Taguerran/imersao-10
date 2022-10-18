@@ -10,14 +10,14 @@ import (
 )
 
 type Route struct {
-	ID       string
-	ClientId string
-	Position []Position
+	ID       string     `json:"routeId"`
+	ClientId string     `json:"clientId"`
+	Position []Position `json:"position"`
 }
 
 type Position struct {
-	Lat  float64
-	Long float64
+	Lat  float64 `json:"lat"`
+	Long float64 `json:"long"`
 }
 
 type PartialRoutePosition struct {
@@ -34,7 +34,7 @@ func (route *Route) LoadPositions() error {
 		return errors.New("ID vazio")
 	}
 	// leitura de arquivos txt
-	file, err := os.Open("./")
+	file, err := os.Open("destinations/" + route.ID + ".txt")
 	if err != nil {
 		return err
 	}
